@@ -165,19 +165,16 @@ function Home() {
 
     recognition.onresult = async (e) => {
       const transcript = e.results[e.results.length - 1][0].transcript.trim();
-      if (
-        transcript.toLowerCase().includes(userData.assistantName.toLowerCase())
-      ) {
-        setAiText("");
-        setUserText(transcript);
-        recognition.stop();
-        isRecognizingRef.current = false;
-        setListening(false);
-        const data = await getGeminiResponse(transcript);
-        handleCommand(data);
-        setAiText(data.response);
-        setUserText("");
-      }
+
+      setAiText("");
+      setUserText(transcript);
+      recognition.stop();
+      isRecognizingRef.current = false;
+      setListening(false);
+      const data = await getGeminiResponse(transcript);
+      handleCommand(data);
+      setAiText(data.response);
+      setUserText("");
     };
 
     const greeting = new SpeechSynthesisUtterance(

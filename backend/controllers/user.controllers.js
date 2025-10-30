@@ -55,7 +55,6 @@ export const askToAssistant = async (req, res) => {
       return res.ststus(400).json({ response: "sorry, i can't understand" });
     }
     const gemResult = JSON.parse(jsonMatch[0]);
-    console.log(gemResult);
     const type = gemResult.type;
 
     switch (type) {
